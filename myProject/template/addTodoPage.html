@@ -1,0 +1,27 @@
+{% extends 'common.html' %}
+
+
+{% block title %}
+    Add Todo
+{% endblock title %}
+    
+    
+
+{% block content %}
+    <div class="container-md fs-3">
+        <h1 class="text-center p-3">Add Todo</h1>
+
+
+        <form action="{% url 'add-todo' %}" method="post" class="row fs-5 border border-3 border-dark rounded-3 p-2 mx-auto my-3 text-dark">
+
+            {% csrf_token %}
+
+            <input type="text" placeholder="Title" class="col-12 m-3 mx-auto p-2 border border-2 border-dark rounded-2" name="title">
+
+            <textarea name="description" id="" placeholder="Description" class="col-12 m-3 mx-2 mx-auto p-2 border border-2 border-dark rounded-2" rows="5" cols="4"></textarea>
+
+            <button type="submit" class="btn rounded-2 btn-dark col-12 m-3 ms-auto fs-5 p-2">Add Todo</button>
+        </form>
+    </div>
+{% endblock content %}
+    
