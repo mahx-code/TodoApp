@@ -18,15 +18,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.views.generic import TemplateView
-from todoManager.views import addTodo
+from todoManager.views import addTodo, home
 
-def home():
-    print("Hi!")
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", TemplateView.as_view(template_name="index.html"), name="home"),
-    path("add-todo-page", TemplateView.as_view(template_name="addTodoPage.html"), name="add-todo-page"),
+    # path("", TemplateView.as_view(template_name="index.html"), name="home"),
+    path("getTodoPage", TemplateView.as_view(template_name="addTodoPage.html"), name="getTodoPage"),
     path("add-todo", addTodo, name="add-todo"),
+    path("", home, name='home'),
 ]
 
 # model(orm)

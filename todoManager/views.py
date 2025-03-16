@@ -11,7 +11,10 @@ def addTodo(request):
         
         print(title, description)
 
-        Todo.objects.create(title=title, description=description)
+        Todo.objects.create(
+            title=title, 
+            description=description
+        )
 
         return redirect('home')
     
