@@ -1,12 +1,96 @@
 {% extends 'common.html' %}
 
-  
-  {% block title %}
-    Home
-  {% endblock title %}
-    
 
-  {% block content %}
-  <h1>This is the home page</h1>
-  {% endblock content %}
-    
+{% block title %}
+Home
+{% endblock title %}
+
+
+{% block content %}
+
+
+
+
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Title</th>
+      <th scope="col">Description</th>
+      <th scope="col">Date</th>
+      <th scope="col">Completed</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    {% for todo in todos %}
+    <tr
+      
+      {% if todo.completed %}
+        class="opacity-50"
+      {% endif %}
+          
+    >
+      <th scope="row">{{forloop.counter}}</th>
+
+      <td>{{todo.title}}</td>
+
+      <td>{{todo.description}}</td>
+
+      <td>{{todo.created_at}}</td>
+
+      <td>
+        
+        {% if todo.completed %}
+          <a href="{% url 'complete-todo' todo.id %}" class="btn btn-success">Completed</a>
+        {% else %}
+          <a href="{% url 'complete-todo' todo.id %}" class="btn btn-warning">Pending</a>
+        {% endif %}
+          
+      </td>
+
+      <td>
+        <a href="{% url 'edit-todo' todo.id %}" class="btn btn-primary
+          
+          {% if todo.completed %}
+            disabled
+          {% endif %}
+            
+        ">Edit</a>
+      </td>
+
+      <td><a href="" data-bs-toggle="modal" data-bs-target="#exampleModal_{{todo.id}}" class="btn btn-danger">Delete</a></td>
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal_{{todo.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Delete {{todo.title}}</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <p>Are you sure you want to delete {{todo.title}}?</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
+                <a href="{% url 'delete-todo' todo.id %}"><button type="button" class="btn btn-danger">Delete</button></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock content %}

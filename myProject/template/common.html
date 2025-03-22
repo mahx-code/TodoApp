@@ -26,7 +26,7 @@
                     <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="{% url 'add-todo-page' %}">Add Todo</a>
+                    <a class="nav-link" href="{% url 'getTodoPage'  %}">Add Todo</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="#">Pricing</a>
@@ -43,7 +43,7 @@
     {% endblock content %}
         
 
-    <footer>
+    <footer style="position:absolute; bottom:0; width:100%;">
         <div class="container-fluid bg-dark text-light">
             <div class="row">
                 <div class="col-md-12">

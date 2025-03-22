@@ -18,7 +18,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.views.generic import TemplateView
-from todoManager.views import addTodo, home
+from todoManager.views import addTodo, home, editTodo, deleteTodo, completedTodo
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -26,6 +26,9 @@ urlpatterns = [
     path("getTodoPage", TemplateView.as_view(template_name="addTodoPage.html"), name="getTodoPage"),
     path("add-todo", addTodo, name="add-todo"),
     path("", home, name='home'),
+    path("edit-todo/<int:todo_id>/", editTodo, name="edit-todo"),
+    path("delete-todo/<int:todo_id>/", deleteTodo, name="delete-todo"),
+    path("complete-todo/<int:todo_id>/", completedTodo, name="complete-todo"),
 ]
 
 # model(orm)
